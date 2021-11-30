@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     })
 
-
+    //MODAL
     const allmodalBtn = document.querySelectorAll('[data-modal]')
     const modal = document.querySelector('.modal')
     const modalClose = document.querySelector('[data-close]')
@@ -77,4 +77,54 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     }
     window.addEventListener('scroll', showMyModalByScroll)
+
+    //DATE
+    const deadline = '2022-12-31'
+
+    function getTime(endTime) {
+        const total = Date.parse(endTime) - Date.parse(new Date())
+        const days = Math.floor((total / (1000 * 60 * 60 * 24)))
+        const seconds = Math.floor((total / 1000) % 60)
+        const minutes = Math.floor((total / 1000 / 60) % 60)
+        const hours = Math.floor((total / (1000 * 60 * 60)) % 24)
+        return {
+            total,
+            days,
+            hours,
+            minutes,
+            seconds
+        }
+    }
+
+    function getZero(num) {
+        if (num >= 0 && num < 10) {
+            return '0' + num
+        } else {
+            return num
+        }
+    }
+
+    function setClock(selector, endTime) {
+        const timer = document.querySelector(selector)
+        const days = timer.querySelector('#days')
+        const hours = timer.querySelector('#hours')
+        const minutes = timer.querySelector('#minutes')
+        const seconds = timer.querySelector('#seconds')
+        const timeInterval = setInterval(updateClock, 1000)
+
+        updateClock()
+
+        function updateClock() {
+            const time = getTime(endTime)
+            days.innerHTML = getZero(time.days)
+            hours.innerHTML = getZero(time.hours)
+            minutes.innerHTML = getZero(time.minutes)
+            seconds.innerHTML = getZero(time.seconds)
+            if (time.total <= 0) {
+                clearInterval(timeInterval)
+            }
+        }
+    }
+    setClock('.timer', deadline)
+
 })
