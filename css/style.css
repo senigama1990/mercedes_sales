@@ -51,8 +51,6 @@ a {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-
-
 .loader {
   width: 100%;
   height: 100vh;
@@ -66,8 +64,6 @@ a {
   background-image: linear-gradient(315deg, #858a8b 0%, #757070 74%);
   z-index: 100;
 }
-
-
 
 .lds-roller {
   display: inline-block;
@@ -153,10 +149,6 @@ a {
     transform: rotate(360deg);
   }
 }
-
-
-
-
 
 .title {
   font-size: 36px;
@@ -740,4 +732,11 @@ a {
   to {
     opacity: 1;
   }
+}
+
+.show {
+  display: block;
+}
+.hide {
+  display: none;
 }
