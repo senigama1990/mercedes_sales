@@ -127,4 +127,77 @@ window.addEventListener('DOMContentLoaded', function () {
     }
     setClock('.timer', deadline)
 
+
+    //CARD CLASS
+    class CarCard {
+        constructor(src, alt, title, descr, price, parentSelector, ...classes) {
+            this.src = src
+            this.alt = alt
+            this.title = title
+            this.descr = descr
+            this.price = price
+            this.transfer = 10750
+            this.parent = document.querySelector(parentSelector)
+            this.classes = classes
+            this.changeToUSD()
+        }
+        changeToUSD() {
+            this.price = this.price * this.transfer
+        }
+        render() {
+            const element = document.createElement('div')
+
+            if (this.classes.length === 0) {
+                this.classes = 'menu__item'
+                element.classList.add(this.classes)
+            } else {
+                this.classes.forEach(classname => element.classList.add(classname))
+            }
+
+            element.innerHTML = `
+                <div class="menu__item">
+                    <img src=${this.src} alt=${this.alt} />
+                    <h3 class="menu__item-subtitle">${this.title}</h3>
+                    <div class="menu__item-descr">${this.descr}</div>
+                    <div class="menu__item-divider"></div>
+                    <div class="menu__item-price">
+                      <div class="menu__item-cost">Price:</div>
+                      <div class="menu__item-total"><span>${this.price}</span> $</div>
+                    </div>
+                </div>
+            `
+            this.parent.append(element)
+        }
+    }
+    new CarCard (
+        'img/tabs/1.jpg',
+        'vegy',
+        '2021 Mercedes-Benz C-Class',
+        `The 2021 Mercedes-Benz C-Class finishes in the top half of our
+              luxury small car rankings. It's powerful and upscale, but it has
+              so-so handli...`,
+        199000,
+        '.menu .container'
+    ).render()
+    
+    new CarCard(
+        'img/tabs/4.jpg',
+        'elite',
+        '2021 Mercedes-Benz CLA-Class',
+        `The 2021 Mercedes-Benz CLA offers punchy powertrains, an elegant
+              interior, and easy-to-use tech features, but it also has a firm
+              ride and a ..`,
+        299000,
+        '.menu .container'
+    ).render()
+
+    new CarCard(
+        'img/tabs/2.jpg',
+        'post',
+        '2021 Mercedes-Benz SCLA-Class',
+        `The German luxury car-manufacturer has been around for more than a
+              century, having elegantly drifted rough curves of automobile.`,
+        399000,
+        '.menu .container'
+    ).render()
 })
