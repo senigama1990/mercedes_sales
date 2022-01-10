@@ -207,6 +207,7 @@ window.addEventListener('DOMContentLoaded', function () {
     const next = document.querySelector('.offer__slider-next')
     const current = document.querySelector('#current')
     const total = document.querySelector('#total')
+   
 
     let slideIndex = 1
     show(slideIndex)
@@ -237,4 +238,8 @@ window.addEventListener('DOMContentLoaded', function () {
     next.addEventListener('click', () => {
         sliderPlus(-1)
     })
+
+    setInterval(() => {
+        sliderPlus(-1)
+    }, 3000)
 })
