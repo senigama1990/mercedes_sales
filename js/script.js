@@ -200,4 +200,41 @@ window.addEventListener('DOMContentLoaded', function () {
         399000,
         '.menu .container'
     ).render()
+
+    // SLIDER
+    const slides = document.querySelectorAll('.offer__slide')
+    const prev = document.querySelector('.offer__slider-prev')
+    const next = document.querySelector('.offer__slider-next')
+    const current = document.querySelector('#current')
+    const total = document.querySelector('#total')
+
+    let slideIndex = 1
+    show(slideIndex)
+    function show(s) {
+        if (s > slides.length) {
+            slideIndex = 1
+        }
+        if (s < 1) {
+            slideIndex = slides.length
+        }
+        slides.forEach(item => item.style.cssText = 'display: none')
+        slides[slideIndex - 1].style.display = 'block'
+        if (slides.length < 10) {
+            current.textContent = `0${slideIndex}`
+        } else {
+            current.textContent = slideIndex
+        }
+    }
+    function sliderPlus(s) {
+        show(slideIndex += 1)
+    }
+    function sliderMinus(s) {
+        show(slideIndex -= 1)
+    }
+    prev.addEventListener('click', () => {
+        sliderMinus(1)
+    })
+    next.addEventListener('click', () => {
+        sliderPlus(-1)
+    })
 })
